@@ -2,7 +2,7 @@ import mysql.connector
 mycon=mysql.connector.connect(host='localhost',user='root',passwd='1234',database='MDCL_RCD')
 cursor=mycon.cursor()
 
-print("ABC GROUUP OF HOSPITALS, MEERUT")
+print("\n\nABC GROUUP OF HOSPITALS, MEERUT\n\n")
 mid=input("Patient's Biometrics       : ")
 cursor.execute("select * from med_info where MD_ID="+str(mid)+";")
 detail=cursor.fetchall()
@@ -16,3 +16,4 @@ else:
               "\nFamily History             : ",row[3],
               "\nPrevious surgeries         : ",row[4],
               "\nDoctor's Notes             : ",row[5])
+import DOCTOR
