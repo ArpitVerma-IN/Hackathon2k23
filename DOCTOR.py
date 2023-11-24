@@ -10,9 +10,9 @@ if detail==[]:
     print("Sorry! Patient is not registered with SANJEEVANI")
 else:
     for row in detail:
-        print("\nYour Unique Medical ID      : ",row[0],
-              "\nKnown Diseases              : ",row[1],
-              "\nKnown Allergies             : ",row[2],
-              "\nFamily History              : ",row[3],
-              "\nPrevious surgeries          : ",row[4],
-              "\nDoctor's Notes              : ",row[5])
+        print("\nYour Unique Medical ID     : ",row[0],
+              "\nKnown Diseases             : ",row[1],
+              "\nKnown Allergies            : ",row[2],
+              "\nFamily History             : ",row[3],
+              "\nPrevious surgeries         : ",row[4],
+              "\nDoctor's Notes             : ",row[5])
