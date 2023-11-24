@@ -11,9 +11,9 @@ if detail==[]:
 else:
     for row in detail:
         print("\nYour Unique Medical ID: ",row[0],
-              "\nKnown Diseases",row[1],
-              "Known Allergies",row[2],
-              "Family History",row[3],
-              "Previous surgeries",row[4],
-              "Doctor's Notes",row[5])
+              "\nKnown Diseases: ",row[1],
+              "\nKnown Allergies: ",row[2],
+              "\nFamily History: ",row[3],
+              "\nPrevious surgeries: ",row[4],
+              "\nDoctor's Notes: ",row[5])
         
