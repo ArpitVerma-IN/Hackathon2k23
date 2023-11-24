@@ -1,12 +1,11 @@
 import mysql.connector
 mycon=mysql.connector.connect(host='localhost',user='root',passwd='1234',database='MDCL_RCD')
 cursor=mycon.cursor()
-print('#'*50)
-print("SIGNUP(S)\nLOGIN(L)")
+print("\nSIGNUP(S)\nLOGIN(L)\n")
 def sign_pg():
     import random
     rnd_no=random.randint(100000,999999)
-    print("Please Enter the Following Details")
+    print("Please Enter the Following Details\n")
     MD_ID=rnd_no
     pwrd=input("Enter a six digit numeric password")
     name=input("Name of Patient: ")
@@ -18,7 +17,7 @@ def sign_pg():
     fetch="select * from basic_info where MD_ID="+str(rnd_no)+";"
     cursor.execute(fetch)
     data=cursor.fetchall()
-    print("#"*99)
+    print("")
     for row in data:
         print("\nYour Unique Medical ID: ",row[0],"\nYour Entered Password: ",row[1],"\nName: ",row[2],"\nAge: ",row[3],"\nSex: ",row[4],"\nBlood Group",row[5])
     mycon.commit()    
@@ -50,7 +49,7 @@ def entry(mid):
     elif choice.lower()=='n':
         quit()
     else:
-        print("Make valid choice")
+        print("Make valid choice\n")
     import PATIENT
 
 def login_pg():
@@ -82,7 +81,7 @@ def login_pg():
     import PATIENT
 
 
-choice=input("Enter Your Choice")
+choice=input("Enter Your Choice:")
 if choice.lower()=="s":
     sign_pg()
 elif choice.lower()=="l":
