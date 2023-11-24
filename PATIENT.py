@@ -7,11 +7,11 @@ def sign_pg():
     rnd_no=random.randint(100000,999999)
     print("Please Enter the Following Details\n")
     MD_ID=rnd_no
-    pwrd=input("Enter a six digit numeric password")
+    pwrd=input("Enter a 6 digit numeric password : ")
     name=input("Name of Patient: ")
-    age=input("Age: ")
-    sex=input("Sex(M/F/O): ")
-    bdgrp=input("Blood Group")
+    age=input("Age            : ")
+    sex=input("Sex(M/F/O)     : ")
+    bdgrp=input("Blood Group   : ")
     cursor.execute("INSERT INTO basic_info (MD_ID,PASSWORD,Name,Age,Sex,Blood_Group) VALUES (" + str(MD_ID) + "," + str(pwrd) + ",'" + name + "'," + str(age) + ",'" + sex + "','" + str(bdgrp) + "')")
     cursor.execute("INSERT INTO med_info(MD_ID) VALUES("+str(MD_ID)+")")
     fetch="select * from basic_info where MD_ID="+str(rnd_no)+";"
@@ -24,25 +24,25 @@ def sign_pg():
     import PATIENT
     
 def entry(mid):
-    choice=input("Update patient's midical Info:(y/n)")
+    choice=input("Update your patient's medical info(y/n) : ")
     if choice.lower()=='y':
-        dses=input("Diagnosed Diseases:")
+        dses=input("Diagnosed Diseases     : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET DISEASES='"+str(dses)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
             
-        ALL=input("Known Allergies: ")
+        ALL=input("Known Allergies         : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET ALLERGIES='"+str(ALL)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
             
-        Fdses=input("FATHER/MOTHER Diagnoses Diseases: ")
+        Fdses=input("FATHER/MOTHER Diagnosed Diseases : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET GENETIC_INFO='"+str(Fdses)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
 
-        shist=input("Surgical History: ")
+        shist=input("Surgical History      : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET SURGICAL_HISTORY='"+str(shist)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
 
-        other=input("Special Note: ")
+        other=input("Special Note          : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET OTHER='"+str(other)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
         import PATIENT
@@ -53,14 +53,14 @@ def entry(mid):
     import PATIENT
 
 def login_pg():
-    mid=input("Enter Your Unique Medical ID: ")
+    mid=input("Unique Medical ID : ")
     cursor.execute("select * from basic_info where MD_ID="+str(mid)+";")
     detail=cursor.fetchall()
     if detail == []:
         print("Make sure you have entered correct Id or you have registered")
         import PATIENT
     else:
-        pwd=input("Enter Password: ")
+        pwd=input("Password        : ")
         for i in detail:
             if str(i[1])==pwd:
                 print("Login Successful")
