@@ -26,11 +26,11 @@ def sign_pg():
 def entry(mid):
     choice=input("Update your patient's medical info(y/n) : ")
     if choice.lower()=='y':
-        dses=input("Diagnosed Diseases     : ")
+        dses=input("Diagnosed Diseases    : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET DISEASES='"+str(dses)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
             
-        ALL=input("Known Allergies         : ")
+        ALL=input("Known Allergies       : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET ALLERGIES='"+str(ALL)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
             
@@ -60,7 +60,7 @@ def login_pg():
         print("Make sure you have entered correct Id or you have registered")
         import PATIENT
     else:
-        pwd=input("Password        : ")
+        pwd=input("Password          : ")
         for i in detail:
             if str(i[1])==pwd:
                 print("Login Successful")
