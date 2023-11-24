@@ -1,7 +1,7 @@
 import mysql.connector
 mycon=mysql.connector.connect(host='localhost',user='root',passwd='1234',database='MDCL_RCD')
 cursor=mycon.cursor()
-
+print('#'*50)
 print("SIGNUP(S)\nLOGIN(L)")
 def sign_pg():
     import random
@@ -20,31 +20,38 @@ def sign_pg():
     data=cursor.fetchall()
     print("#"*99)
     for row in data:
-        print("\nYour Unique Medical ID: ",row[0],"\nYour Entered Password: ",row[1],"\nYour Name: ",row[2],"\nAge: ",row[3],"\nSex: ",row[4],"\nBlood Group",row[5])
+        print("\nYour Unique Medical ID: ",row[0],"\nYour Entered Password: ",row[1],"\nName: ",row[2],"\nAge: ",row[3],"\nSex: ",row[4],"\nBlood Group",row[5])
     mycon.commit()    
     import PATIENT
     
 def entry(mid):
-    choice=input("Please enter in which field do you want to submit record\nDiseases(D)\nAllergies(A)\nFamily History(F)\nSurgical History(S)\nAny Special Notes(O)\n>>>")
-    dses=input("Enter patient's diagnosed diseases patient is suffering from:")
-    cursor.execute("UPDATE mdcl_rcd.med_info SET DISEASES='"+str(dses)+"' WHERE MD_ID="+mid+";")
-    mycon.commit()
-        
-    ALL=input("Enter patient's known Allergies: ")
-    cursor.execute("UPDATE mdcl_rcd.med_info SET ALLERGIES='"+str(ALL)+"' WHERE MD_ID="+mid+";")
-    mycon.commit()
-        
-    Fdses=input("Enter patient's FATHER/MOTHER diagnoses diseases: ")
-    cursor.execute("UPDATE mdcl_rcd.med_info SET GENETIC_INFO='"+str(Fdses)+"' WHERE MD_ID="+mid+";")
-    mycon.commit()
+    choice=input("Update patient's midical Info:(y/n)")
+    if choice.lower()=='y':
+        dses=input("Diagnosed Diseases:")
+        cursor.execute("UPDATE mdcl_rcd.med_info SET DISEASES='"+str(dses)+"' WHERE MD_ID="+mid+";")
+        mycon.commit()
+            
+        ALL=input("Known Allergies: ")
+        cursor.execute("UPDATE mdcl_rcd.med_info SET ALLERGIES='"+str(ALL)+"' WHERE MD_ID="+mid+";")
+        mycon.commit()
+            
+        Fdses=input("FATHER/MOTHER Diagnoses Diseases: ")
+        cursor.execute("UPDATE mdcl_rcd.med_info SET GENETIC_INFO='"+str(Fdses)+"' WHERE MD_ID="+mid+";")
+        mycon.commit()
 
-    shist=input("Enter patient's Surgical History: ")
-    cursor.execute("UPDATE mdcl_rcd.med_info SET SURGICAL_HISTORY='"+str(shist)+"' WHERE MD_ID="+mid+";")
-    mycon.commit()
+        shist=input("Surgical History: ")
+        cursor.execute("UPDATE mdcl_rcd.med_info SET SURGICAL_HISTORY='"+str(shist)+"' WHERE MD_ID="+mid+";")
+        mycon.commit()
 
-    other=input("Any Special Note for Patient: ")
-    cursor.execute("UPDATE mdcl_rcd.med_info SET OTHER='"+str(other)+"' WHERE MD_ID="+mid+";")
-    mycon.commit()  
+        other=input("Special Note: ")
+        cursor.execute("UPDATE mdcl_rcd.med_info SET OTHER='"+str(other)+"' WHERE MD_ID="+mid+";")
+        mycon.commit()
+        import PATIENT
+    elif choice.lower()=='n':
+        quit()
+    else:
+        print("Make valid choice")
+    import PATIENT
 
 def login_pg():
     mid=input("Enter Your Unique Medical ID: ")
@@ -52,6 +59,7 @@ def login_pg():
     detail=cursor.fetchall()
     if detail == []:
         print("Make sure you have entered correct Id or you have registered")
+        import PATIENT
     else:
         pwd=input("Enter Password: ")
         for i in detail:
@@ -71,8 +79,7 @@ def login_pg():
                 print("Wrong Password")
 
 
-
-
+    import PATIENT
 
 
 choice=input("Enter Your Choice")
