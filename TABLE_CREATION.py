@@ -1,13 +1,3 @@
-'''def table_creation_NAME_PWD():
-    import mysql.connector
-    mycon=mysql.connector.connect(host='localhost',user='root',passwd='1234',database='mdcl_rcd')
-    cursor=mycon.cursor()
-    mycon.autocommit=True
-    s1="create table IF NOT EXISTS md_id(MD_ID int(6),Name varchar(20),PASSWORD int(4))"
-    cursor.execute(s1)
-table_creation_NAME_PWD()'''
-
-
 def table_creation_BASIC_INFO():
     import mysql.connector
     mycon=mysql.connector.connect(host='localhost',user='root',passwd='1234',database='mdcl_rcd')
