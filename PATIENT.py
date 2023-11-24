@@ -22,35 +22,29 @@ def sign_pg():
     for row in data:
         print("\nYour Unique Medical ID: ",row[0],"\nYour Entered Password: ",row[1],"\nYour Name: ",row[2],"\nAge: ",row[3],"\nSex: ",row[4],"\nBlood Group",row[5])
     mycon.commit()    
-
+    import PATIENT
+    
 def entry(mid):
     choice=input("Please enter in which field do you want to submit record\nDiseases(D)\nAllergies(A)\nFamily History(F)\nSurgical History(S)\nAny Special Notes(O)\n>>>")
-    if choice.lower()=="d":
-        dses=input("Enter patient's diagnosed diseases patient is suffering from:")
-        cursor.execute("UPDATE mdcl_rcd.med_info SET DISEASES='"+str(dses)+"' WHERE MD_ID="+mid+";")
-        mycon.commit()
+    dses=input("Enter patient's diagnosed diseases patient is suffering from:")
+    cursor.execute("UPDATE mdcl_rcd.med_info SET DISEASES='"+str(dses)+"' WHERE MD_ID="+mid+";")
+    mycon.commit()
         
-    
-    if choice.lower()=="a":
-            ALL=input("Enter patient's known Allergies: ")
-            cursor.execute("UPDATE mdcl_rcd.med_info SET ALLERGIES='"+str(ALL)+"' WHERE MD_ID="+mid+";")
-            mycon.commit()
+    ALL=input("Enter patient's known Allergies: ")
+    cursor.execute("UPDATE mdcl_rcd.med_info SET ALLERGIES='"+str(ALL)+"' WHERE MD_ID="+mid+";")
+    mycon.commit()
         
-    if choice.lower()=="f":
-            Fdses=input("Enter patient's FATHER/MOTHER diagnoses diseases: ")
-            cursor.execute("UPDATE mdcl_rcd.med_info SET GENETIC_INFO='"+str(Fdses)+"' WHERE MD_ID="+mid+";")
-            mycon.commit()
+    Fdses=input("Enter patient's FATHER/MOTHER diagnoses diseases: ")
+    cursor.execute("UPDATE mdcl_rcd.med_info SET GENETIC_INFO='"+str(Fdses)+"' WHERE MD_ID="+mid+";")
+    mycon.commit()
 
-    if choice.lower()=="s":
-            shist=input("Enter patient's Surgical History: ")
-            cursor.execute("UPDATE mdcl_rcd.med_info SET SURGICAL_HISTORY='"+str(shist)+"' WHERE MD_ID="+mid+";")
-            mycon.commit()
+    shist=input("Enter patient's Surgical History: ")
+    cursor.execute("UPDATE mdcl_rcd.med_info SET SURGICAL_HISTORY='"+str(shist)+"' WHERE MD_ID="+mid+";")
+    mycon.commit()
 
-
-    if choice.lower()=="o":
-            other=input("Any Special Note for Patient: ")
-            cursor.execute("UPDATE mdcl_rcd.med_info SET OTHER='"+str(other)+"' WHERE MD_ID="+mid+";")
-            mycon.commit()  
+    other=input("Any Special Note for Patient: ")
+    cursor.execute("UPDATE mdcl_rcd.med_info SET OTHER='"+str(other)+"' WHERE MD_ID="+mid+";")
+    mycon.commit()  
 
 def login_pg():
     mid=input("Enter Your Unique Medical ID: ")
@@ -67,7 +61,11 @@ def login_pg():
                 cursor.execute(fetch)
                 data=cursor.fetchall()
                 for row in data:
-                    print("\nYour Unique Medical ID: ",row[0],"\nYour Name: ",row[2],"\nAge: ",row[3],"\nSex: ",row[4],"\nBlood Group",row[5])
+                    print("\nYour Unique Medical ID: ",row[0],
+                          "\nYour Name             : ",row[2],
+                          "\nAge                   : ",row[3],
+                          "\nSex                   : ",row[4],
+                          "\nBlood Group           :",row[5])
                     entry(mid)
             else:
                 print("Wrong Password")
