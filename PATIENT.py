@@ -24,7 +24,7 @@ def sign_pg():
     import PATIENT
     
 def entry(mid):
-    choice=input("Update your patient's medical info(y/n) : ")
+    choice=input("Update medical info(y/n) : ")
     if choice.lower()=='y':
         dses=input("Diagnosed Diseases    : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET DISEASES='"+str(dses)+"' WHERE MD_ID="+mid+";")
@@ -34,7 +34,7 @@ def entry(mid):
         cursor.execute("UPDATE mdcl_rcd.med_info SET ALLERGIES='"+str(ALL)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
             
-        Fdses=input("FATHER/MOTHER Diagnosed Diseases : ")
+        Fdses=input("Parent Diagnosed Diseases : ")
         cursor.execute("UPDATE mdcl_rcd.med_info SET GENETIC_INFO='"+str(Fdses)+"' WHERE MD_ID="+mid+";")
         mycon.commit()
 
@@ -68,11 +68,11 @@ def login_pg():
                 cursor.execute(fetch)
                 data=cursor.fetchall()
                 for row in data:
-                    print("\nYour Unique Medical ID: ",row[0],
-                          "\nYour Name             : ",row[2],
-                          "\nAge                   : ",row[3],
-                          "\nSex                   : ",row[4],
-                          "\nBlood Group           :",row[5])
+                    print("\nUnique Medical ID : ",row[0],
+                          "\nName              : ",row[2],
+                          "\nAge               : ",row[3],
+                          "\nSex               : ",row[4],
+                          "\nBlood Group       : ",row[5])
                     entry(mid)
             else:
                 print("Wrong Password")
@@ -81,7 +81,7 @@ def login_pg():
     import PATIENT
 
 
-choice=input("Enter Your Choice:")
+choice=input("Enter Your Choice : ")
 if choice.lower()=="s":
     sign_pg()
 elif choice.lower()=="l":
