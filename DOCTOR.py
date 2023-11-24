@@ -2,8 +2,8 @@ import mysql.connector
 mycon=mysql.connector.connect(host='localhost',user='root',passwd='1234',database='MDCL_RCD')
 cursor=mycon.cursor()
 
-print("ABC GROUUP OF HOSPITALS,MEERUT")
-mid=input("Patient's Biometrics : ")
+print("ABC GROUUP OF HOSPITALS, MEERUT")
+mid=input("Patient's Biometrics       : ")
 cursor.execute("select * from med_info where MD_ID="+str(mid)+";")
 detail=cursor.fetchall()
 if detail==[]:
